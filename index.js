@@ -79,14 +79,13 @@ let cardhistory = (e) => {
     Title: title,
     price: spanprice
   })
-  console.log(history)
+
   historyshow(history) 
 }
 let historyshow = (hs) => {
   let d2 = document.getElementById("history_div")
   d2.innerHTML = ""
-  console.log(hs)
-
+  
   hs.forEach(element => {
     let nw = document.createElement("div")
     nw.innerHTML = `
@@ -99,4 +98,10 @@ let historyshow = (hs) => {
       </div>`
     d2.appendChild(nw)
   });
+}
+let delet = (bt) => {
+  let filtered = history.filter(element => element.Title !== bt)
+
+  history = filtered
+  historyshow(filtered) 
 }
