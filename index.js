@@ -58,3 +58,45 @@ let middle = (v) =>{
       middle_div.appendChild(nw)
   }
 }
+/**history section */
+let history =[]
+document.getElementById("div_middle").addEventListener("click",function(e){
+   if(e.target.innerText === "add to card"){
+    cardhistory(e)
+   }
+})
+
+let cardhistory = (e) => {
+
+  let title = e.target.parentNode.children[1].innerText
+  console.log(title)
+  let price = e.target.parentNode
+  let spanprice = price.querySelector("span").innerText
+  console.log(spanprice)
+
+  
+  history.push({
+    Title: title,
+    price: spanprice
+  })
+  console.log(history)
+  historyshow(history) 
+}
+let historyshow = (hs) => {
+  let d2 = document.getElementById("history_div")
+  d2.innerHTML = ""
+  console.log(hs)
+
+  hs.forEach(element => {
+    let nw = document.createElement("div")
+    nw.innerHTML = `
+      <div class="flex justify-between border p-2 mb-2">
+        <div>
+          <h1>${element.Title}</h1>
+          <p>${element.price}</p>
+        </div>
+        <button onclick="delet('${element.Title}')">❌</button>
+      </div>`
+    d2.appendChild(nw)
+  });
+}
