@@ -72,9 +72,13 @@ let cardhistory = (e) => {
   console.log(title)
   let price = e.target.parentNode
   let spanprice = price.querySelector("span").innerText
-  console.log(spanprice)
+  let p1 = parseInt(spanprice)
+  let pri = document.getElementById("price2").innerText
+  let p2 = parseInt(pri)
+  let total = p1 + p2
+  document.getElementById("price2").innerText = total;
 
-  
+  console.log(total)
   history.push({
     Title: title,
     price: spanprice
@@ -85,7 +89,7 @@ let cardhistory = (e) => {
 let historyshow = (hs) => {
   let d2 = document.getElementById("history_div")
   d2.innerHTML = ""
-  
+
   hs.forEach(element => {
     let nw = document.createElement("div")
     nw.innerHTML = `
@@ -101,7 +105,11 @@ let historyshow = (hs) => {
 }
 let delet = (bt) => {
   let filtered = history.filter(element => element.Title !== bt)
-
+  let total = 0;
+  history.forEach(item => {
+    total += parseInt (item.price);
+  })
+  document.getElementById("price2").innerText = total;
   history = filtered
   historyshow(filtered) 
 }
